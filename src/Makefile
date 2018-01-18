@@ -1,22 +1,20 @@
-CC = gcc
-BINDIR = ../bin
-OBJDIR = ../obj/crank
-CFLAGS = -c -DUNIX -DPARANOID -DUSE_LOGGING -DUSE_QUERY
-LDFLAGS = -pthread -lm
+CC=gcc
+
 ifeq ($(BUILD),release)
-	PROG = $(BINDIR)/crank
-	OBJDIR += /release
-	CFLAGS += -DNDEBUG -O3 -fno-exceptions
-	LDFLAGS += -O3 -fno-exceptions
-	EXTRA = strip $(PROG)
+	PROG=../bin/crank
+	OBJDIR=../obj/crank/release
+	CFLAGS=-c -DUNIX -DPARANOID -DUSE_LOGGING -DUSE_QUERY -DNDEBUG -O3 -fno-exceptions
+	LDFLAGS=-pthread -lm -O3 -fno-exceptions
+	EXTRA=strip $(PROG)
 else
-	PROG = $(BINDIR)/crank-debug
-	OBJDIR += /debug
-	CFLAGS += -D_DEBUG -DSUPERDEBUG -g -Wall
-	LDFLAGS += -g
-	EXTRA =
+	PROG=../bin/crank-debug
+	OBJDIR=../obj/crank/debug
+	CFLAGS=-c -DUNIX -DPARANOID -DUSE_LOGGING -DUSE_QUERY -D_DEBUG -DSUPERDEBUG -g -Wall
+	LDFLAGS=-pthread -lm -g
+	EXTRA=
 endif
-OBJS = $(OBJDIR)/crank.o $(OBJDIR)/generate.o $(OBJDIR)/hash.o $(OBJDIR)/irc.o $(OBJDIR)/objects.o $(OBJDIR)/query.o $(OBJDIR)/sockets.o $(OBJDIR)/util.o
+
+OBJS=$(OBJDIR)/crank.o $(OBJDIR)/generate.o $(OBJDIR)/hash.o $(OBJDIR)/irc.o $(OBJDIR)/objects.o $(OBJDIR)/query.o $(OBJDIR)/sockets.o $(OBJDIR)/util.o
 
 all: crank
 
@@ -50,4 +48,3 @@ $(OBJDIR)/util.o: util.c util.h
 
 clean:
 	rm $(OBJDIR)/*.o $(PROG)
-
