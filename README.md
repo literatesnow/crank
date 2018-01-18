@@ -27,7 +27,7 @@ v1.546|30th July 2007|[win32 i386](https://www.nisda.net/files/crank-v1.546.zip)
 
 ## Source
 
-The source code was released on 2008-01-28.
+The source code was released on 28th January 2008.
 
 ### Windows
 
@@ -35,8 +35,15 @@ Compile with Microsoft Visual Studio 6.
 
 ### Linux
 
-Compile with GCC using the ``Makefile`` in the ``src`` directory.
-Use ``make BUILD=release`` for the non-debug version.
+Compile with GCC using the ``Makefile`` in the [src/](src/) directory.
+
+```bash
+  cd src
+  make                  # Build debug version
+  make BUILD=release    # Build release version
+```
+
+Thanks to [icepik-au](https://github.com/icepik-au) for patching the Makefile to work in this decade.
 
 ### Third Party Software
 
