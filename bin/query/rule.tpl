@@ -1,0 +1,9 @@
+$(IF:QUAKEWORLD)$\
+$(IF:RULENAME(status))$\
+$(IFNOT:RULEVALUE(Standby))$\
+$(IFNOT:RULEVALUE(Normal))$\
+ ($(RULEVALUE))$\
+$(ENDIF)$\
+$(ENDIF)$\
+$(ENDIF)$\
+$(ENDIF)$\
